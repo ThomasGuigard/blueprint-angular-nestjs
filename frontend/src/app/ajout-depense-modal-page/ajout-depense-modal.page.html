@@ -1,0 +1,16 @@
+<ion-card style="box-shadow: none">
+  <ion-card-header>
+    <ion-card-title>Categorie</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-input type="text" placeholder="Filtrer" (ionChange)="filter()" [(ngModel)]="filterInput"></ion-input>
+    <ion-list lines="none">
+      <ion-item *ngFor="let cat of expenseCategoryFiltered">
+        <ion-button>
+          <img height="24px" src="{{ cat.icon }}">
+          <p>{{ cat.label }}</p>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
+</ion-card>
