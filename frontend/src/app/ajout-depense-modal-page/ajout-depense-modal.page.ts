@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { ServiceService } from '../service.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-ajout-depense-modal-page',
@@ -8,7 +9,7 @@ import { ServiceService } from '../service.service';
 })
 export class AjoutDepenseModalPage implements OnInit {
 
-  constructor(private service: ServiceService) { }
+  constructor(private service: ServiceService, public router: Router) { }
   filterInput = '';
 
   expenseCategory;
@@ -33,6 +34,10 @@ export class AjoutDepenseModalPage implements OnInit {
       console.log('vide');
       this.expenseCategoryFiltered = this.expenseCategory;
     }
+  }
+
+  addExpense(uid: string): void {
+    this.router.navigateByUrl('/addExpense', { state : { catUid: uid } }).catch();
   }
 
 }

@@ -1,0 +1,27 @@
+<ion-button (click)="createModal()" >Ajouter une dépense</ion-button>
+
+<div>
+  <h1>Depenses</h1>
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Description</th>
+      <th>Category</th>
+      <th>Montant</th>
+      <th>% TVA</th>
+      <th>TVA</th>
+      <th>Total</th>
+      <th>Devise</th>
+    </tr>
+    <tr *ngFor="let exp of expenses">
+      <td>{{exp.date}}</td>
+      <td>{{exp.descrtiption}}</td>
+      <td><img width="24px" height="24px" src="{{exp.icon}}"> {{exp.label}}</td>
+      <td>{{exp.amount}}</td>
+      <td>{{exp.rate}}</td>
+      <td>{{exp.vat}}</td>
+      <td>{{exp.totalAmount}}</td>
+      <td>{{exp.code}}</td>
+    </tr>
+  </table>
+</div>

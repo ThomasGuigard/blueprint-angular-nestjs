@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {Expense} from './add-expense/expense.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +9,25 @@ export class ServiceService {
 
   constructor(private http: HttpClient) { }
 
-  // tslint:disable-next-line:typedef
-  getAllExpenseCategory() {
-    return this.http.get('/expense-category');
+  getAllExpenseCategory(): any {
+    return this.http.get('/api/expense-category');
+  }
+
+  getOneExpenseCategory(id: string): any {
+    return this.http.get(`/api/expense-category/${id}`);
+  }
+
+  getAllVat(): any {
+    return this.http.get('/api/vat-rate');
+  }
+
+  getAllCurrency(): any {
+    return this.http.get('/api/currency');
+  }
+  getAllExpenses(): any {
+    return this.http.get('/api/expense');
+  }
+  postExpense(expense: Expense): any {
+    return this.http.post('/api/expense', expense);
   }
 }

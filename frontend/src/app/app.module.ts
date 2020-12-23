@@ -7,11 +7,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AjoutDepenseModalPage } from './ajout-depense-modal-page/ajout-depense-modal.page';
 import { HttpClientModule } from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+import { AddExpenseComponent } from './add-expense/add-expense.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AjoutDepenseModalPage,
+    AddExpenseComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

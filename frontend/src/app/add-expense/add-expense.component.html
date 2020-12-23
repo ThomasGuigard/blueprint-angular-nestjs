@@ -1,0 +1,33 @@
+<ion-datetime placeholder="Select Date" max="2100" [(ngModel)]="expense.date"></ion-datetime>
+<ion-input type="text" placeholder="Description" [(ngModel)]="expense.description"></ion-input>
+
+<ion-item>
+  <ion-label>Devise</ion-label>
+  <ion-select [(ngModel)]="currency">
+    <ion-select-option *ngFor="let cur of currencies" [value]="cur">{{ cur.code }}</ion-select-option>
+  </ion-select>
+</ion-item>
+
+<ion-item>
+  <ion-label>TVA</ion-label>
+  <ion-select [(ngModel)]="vat">
+    <ion-select-option *ngFor="let vat of vats" [value]="vat">{{ vat.rate }}</ion-select-option>
+  </ion-select>
+</ion-item>
+
+<ion-input type="number" placeholder="Montant" [(ngModel)]="expense.amount"></ion-input>
+
+<div>
+  TVA: {{  expense.amount * vat.rate }}
+</div>
+
+<div>
+  Total : {{ expense.amount * vat.rate + expense.amount }} {{ currency.code }}
+</div>
+
+<ion-button disabled>
+  <img height="24px" src="{{ cat.icon }}">
+  <p>{{ cat.label }}</p>
+</ion-button>
+
+<ion-button color="success" (click)="submit()">Ajouter une depense</ion-button>

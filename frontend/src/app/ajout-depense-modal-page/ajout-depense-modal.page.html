@@ -6,7 +6,7 @@
     <ion-input type="text" placeholder="Filtrer" (ionChange)="filter()" [(ngModel)]="filterInput"></ion-input>
     <ion-list lines="none">
       <ion-item *ngFor="let cat of expenseCategoryFiltered">
-        <ion-button>
+        <ion-button href="/addExpense/{{ cat.uid }}" router-direction>
           <img height="24px" src="{{ cat.icon }}">
           <p>{{ cat.label }}</p>
         </ion-button>
