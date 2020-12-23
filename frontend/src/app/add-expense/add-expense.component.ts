@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import { Expense } from './expense.interface';
 import {ServiceService} from '../service.service';
-import {AlertController} from "@ionic/angular";
+import {AlertController} from '@ionic/angular';
 
 @Component({
   selector: 'app-add-expense',
@@ -11,7 +11,12 @@ import {AlertController} from "@ionic/angular";
 })
 export class AddExpenseComponent implements OnInit {
 
-  constructor(public activatedRoute: ActivatedRoute, private service: ServiceService, public router: Router, public alertController: AlertController) { }
+  constructor(
+    public activatedRoute: ActivatedRoute,
+    private service: ServiceService,
+    public router: Router,
+    public alertController: AlertController
+  ) { }
 
   expense: Expense = {} as Expense;
   vats;
@@ -19,7 +24,7 @@ export class AddExpenseComponent implements OnInit {
   currencies;
 
   vat = { rate: 0, uid: '' };
-  currency = { code : 0, uid: '' };
+  currency = { code : '', uid: '' };
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -45,12 +50,17 @@ export class AddExpenseComponent implements OnInit {
     this.expense.vatRateUid = this.vat.uid;
     this.expense.catUid = this.cat.uid;
     this.service.postExpense(this.expense).subscribe((async (value: { rowCount: number }) => {
-      if (value.rowCount === 1) {
+      if (value && value.rowCount === 1) {
         const alert = await this.alertController.create({
           message: 'Depense ajoutee',
         });
         await alert.present();
         this.router.navigateByUrl('/').catch();
+      } else {
+        const alert = await this.alertController.create({
+          message: 'Erreur lors de l\'ajout',
+        });
+        await alert.present();
       }
     }));
   }

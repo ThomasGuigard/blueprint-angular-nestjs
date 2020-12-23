@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { AppService } from '../app.service';
 import { Expense } from './expense.interface';
 
@@ -19,5 +19,10 @@ export class ExpenseController {
   @Post()
   async addExpense(@Body() expense: Expense) {
     return await this.appService.postExpense(expense);
+  }
+
+  @Delete(':id')
+  async deleteOneExpense(@Param() params) {
+    return await this.appService.deleteExpense(params.id);
   }
 }

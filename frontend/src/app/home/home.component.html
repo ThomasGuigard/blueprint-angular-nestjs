@@ -2,6 +2,8 @@
 
 <div>
   <h1>Depenses</h1>
+  <ion-input placeholder="Filtrer" [(ngModel)]="filterInput" (ionChange)="filter()"></ion-input>
+  <ion-datetime placeholder="Filter Date" max="2100" [(ngModel)]="dateFilter" (ionChange)="filterDate()"></ion-datetime>
   <table>
     <tr>
       <th>Date</th>
@@ -12,16 +14,24 @@
       <th>TVA</th>
       <th>Total</th>
       <th>Devise</th>
+      <th>action(s)</th>
     </tr>
-    <tr *ngFor="let exp of expenses">
+    <tr *ngFor="let exp of expenseFiltered">
       <td>{{exp.date}}</td>
       <td>{{exp.descrtiption}}</td>
-      <td><img width="24px" height="24px" src="{{exp.icon}}"> {{exp.label}}</td>
+      <td><img width="24px" height="24px" src="{{exp.icon}}" alt=""> {{exp.label}}</td>
       <td>{{exp.amount}}</td>
       <td>{{exp.rate}}</td>
       <td>{{exp.vat}}</td>
       <td>{{exp.totalAmount}}</td>
       <td>{{exp.code}}</td>
+      <td>
+        <ion-button (click)="delete(exp.uid)" color="danger">Supprimer</ion-button>
+      </td>
+    </tr>
+    <tr>
+      <th>Total</th>
+      <td colspan="8">{{ total }}</td>
     </tr>
   </table>
 </div>

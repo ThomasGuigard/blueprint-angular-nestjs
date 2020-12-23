@@ -38,7 +38,7 @@ export class AppService {
   async getAllExpensesDisplay() {
     const client = new Client(this.clientConfig);
     await client.connect();
-    const res = await client.query('SELECT date, descrtiption, amount, vat, "totalAmount", "expenseCategory".label, icon, code, "vatRate".rate FROM expense, currency, "vatRate", "expenseCategory" WHERE expense."currencyUid" = currency.uid AND expense."vatRateUid" = "vatRate".uid AND expense."categoryUid" = "expenseCategory".uid;');
+    const res = await client.query('SELECT expense.uid, date, descrtiption, amount, vat, "totalAmount", "expenseCategory".label, icon, code, "vatRate".rate FROM expense, currency, "vatRate", "expenseCategory" WHERE expense."currencyUid" = currency.uid AND expense."vatRateUid" = "vatRate".uid AND expense."categoryUid" = "expenseCategory".uid;');
     await client.end();
     return res.rows;
   }
@@ -51,6 +51,20 @@ export class AppService {
     const query = {
       text: `INSERT INTO expense VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
       values: [uid, expense.date, expense.description, expense.amount, expense.vat, expense.totalAmount, expense.catUid, expense.currencyUid, expense.vatRateUid],
+    };
+
+    const res = await client.query(query);
+    await client.end();
+    return res;
+  }
+
+  async deleteExpense(id: string) {
+    const client = new Client(this.clientConfig);
+    await client.connect();
+    const query = {
+
+      text: `DELETE FROM expense WHERE expense.uid = $1`,
+      values: [id],
     };
 
     const res = await client.query(query);

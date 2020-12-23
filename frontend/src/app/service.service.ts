@@ -24,10 +24,16 @@ export class ServiceService {
   getAllCurrency(): any {
     return this.http.get('/api/currency');
   }
+
   getAllExpenses(): any {
     return this.http.get('/api/expense');
   }
+
   postExpense(expense: Expense): any {
     return this.http.post('/api/expense', expense);
+  }
+
+  deleteExpense(id: string): any {
+    return this.http.delete(`/api/expense/${id}`);
   }
 }

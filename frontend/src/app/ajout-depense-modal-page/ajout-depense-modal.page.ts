@@ -1,12 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import { ServiceService } from '../service.service';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-ajout-depense-modal-page',
   templateUrl: './ajout-depense-modal.page.html',
   styleUrls: ['./ajout-depense-modal.page.scss']
 })
+// tslint:disable-next-line:component-class-suffix
 export class AjoutDepenseModalPage implements OnInit {
 
   constructor(private service: ServiceService, public router: Router) { }

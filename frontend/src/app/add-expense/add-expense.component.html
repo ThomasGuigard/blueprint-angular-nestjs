@@ -26,8 +26,7 @@
 </div>
 
 <ion-button disabled>
-  <img height="24px" src="{{ cat.icon }}">
+  <img height="24px" src="{{ cat.icon }}" alt="">
   <p>{{ cat.label }}</p>
 </ion-button>
-
-<ion-button color="success" (click)="submit()">Ajouter une depense</ion-button>
+<ion-button color="success" (click)="submit()" [disabled]="!(expense.date !== '' && expense.description !== '' && currency.uid !== '' && vat.uid !== '' &&expense.amount)">Ajouter une depense</ion-button>
