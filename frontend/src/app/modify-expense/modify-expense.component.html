@@ -1,0 +1,43 @@
+<ion-button (click)="close()">Retour</ion-button>
+<ng-container *ngIf="expense">
+  <ion-radio-group [(ngModel)]="expense.expenseCategory">
+    <ion-list-header>
+      <ion-label>Catégorie de dépense</ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let cat of categoriesList">
+      <ion-label>{{ cat.label }}</ion-label>
+      <ion-radio slot="start" [value]="cat"></ion-radio>
+    </ion-item>
+  </ion-radio-group>
+  <ion-item>
+    <ion-label position="floating">Date de la dépense</ion-label>
+    <ion-datetime displayFormat="YYYY-MM-DD" min="2000-01-01" [(ngModel)]="expense.date"></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-input placeholder="Description" [(ngModel)]="expense.description"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input placeholder="Dépense TTC" type="number" [(ngModel)]="expense.totalAmount"></ion-input>
+  </ion-item>
+  <ion-radio-group [(ngModel)]="expense.currency">
+    <ion-list-header>
+      <ion-label>Devise</ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let cur of currencies">
+      <ion-label>{{ cur.code }}</ion-label>
+      <ion-radio slot="start" [value]="cur"></ion-radio>
+    </ion-item>
+  </ion-radio-group>
+  <ion-radio-group [(ngModel)]="vatRateSelected">
+    <ion-list-header>
+      <ion-label>Taux de TVA</ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let vatRate of vatRates">
+      <ion-label>{{ vatRate.label }}</ion-label>
+      <ion-radio slot="start" [value]="vatRate"></ion-radio>
+    </ion-item>
+  </ion-radio-group>
+  <ion-item>
+    <ion-button (click)="validate()">Modifier</ion-button>
+  </ion-item>
+</ng-container>

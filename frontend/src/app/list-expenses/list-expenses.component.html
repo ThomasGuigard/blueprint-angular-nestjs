@@ -1,0 +1,19 @@
+<ion-searchbar [(ngModel)]="searchTyping" (ionChange)="filterSearch()"></ion-searchbar>
+<ng-container *ngIf="listOfExpenses.length">
+  <ion-list *ngFor="let expense of listOfExpenses">
+    <ion-item>
+      <ion-label>{{ expense.description }}</ion-label>
+      <ion-icon name="eye-outline" (click)="seeDetails(expense)"></ion-icon>&nbsp;
+      <ion-icon name="pencil-outline" (click)="modifyExpense(expense)"></ion-icon>&nbsp;
+      <ion-icon name="trash-outline" (click)="deleteExpense(expense)"></ion-icon>
+      <ion-note slot="end">{{ expense.totalAmount }} {{ expense.currency.code }}</ion-note>
+    </ion-item>
+  </ion-list>
+</ng-container>
+<ng-container *ngIf="!listOfExpenses.length">
+  <ion-list>
+    <ion-item>
+      <ion-label>Aucune dépense à afficher</ion-label>
+    </ion-item>
+  </ion-list>
+</ng-container>

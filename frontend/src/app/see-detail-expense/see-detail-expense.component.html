@@ -1,0 +1,26 @@
+<ion-button (click)="close()">Retour</ion-button>
+<ion-card>
+  <ion-card-header>
+    <ion-card-subtitle>Catégorie : {{ expense?.expenseCategory?.label }}</ion-card-subtitle>
+    <ion-card-title>Date : {{ expense?.date | date:'shortDate' }}</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    {{ expense?.description }}
+    <ion-item>
+      HT : {{ expense?.amount | number: '1.0-2' }} {{ expense?.currency?.code }}
+    </ion-item>
+    <ion-item>
+      TVA : {{ expense?.vatRate?.label }}
+    </ion-item>
+    <ion-item>
+      TTC : {{ expense?.totalAmount | number: '1.0-2' }} {{ expense?.currency?.code }}
+    </ion-item>
+  </ion-card-content>
+</ion-card>
+<ion-button (click)="modifyExpense()">
+  <ion-icon name="pencil-outline"></ion-icon> Modifier
+</ion-button>
+<ion-button (click)="deleteExpense()">
+  <ion-icon name="trash-outline"></ion-icon> Supprimer
+</ion-button>

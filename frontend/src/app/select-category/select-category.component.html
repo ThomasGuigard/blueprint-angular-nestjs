@@ -1,0 +1,10 @@
+<ion-searchbar [(ngModel)]="searchTyping" (ionChange)="filterSearch()"></ion-searchbar>
+<ion-radio-group [(ngModel)]="category" (ionChange)="sendEvent()">
+  <ion-list-header>
+    <ion-label>Catégorie de dépense</ion-label>
+  </ion-list-header>
+  <ion-item *ngFor="let cat of categoriesList">
+    <ion-label>{{ cat.label }}</ion-label>
+    <ion-radio slot="start" [value]="cat"></ion-radio>
+  </ion-item>
+</ion-radio-group>
